@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th Birthday Shivani! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffc0e3 50%, #ff9ec8 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts animation */
+        .heart-bg {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            opacity: 0.3;
+            animation: float 15s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff1493;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #ff69b4;
+            margin-top: 10px;
+        }
+
+        .message-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+        }
+
+        .message-section h2 {
+            color: #ff1493;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .message-section p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        /* Game Section */
+        .game-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+        }
+
+        .game-section h2 {
+            color: #ff1493;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #gameCanvas {
+            display: block;
+            margin: 20px auto;
+            background: linear-gradient(180deg, #ffe6f0 0%, #ffd4e8 100%);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .game-info {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ff1493;
+            font-weight: bold;
+        }
+
+        .instructions {
+            text-align: center;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .countdown-section h2 {
+            color: #ff1493;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #countdown {
+            font-size: 1.5em;
+            color: #ff69b4;
+            font-weight: bold;
+        }
+
+        /* Heart shapes */
+        .heart {
+            width: 50px;
+            height: 50px;
+            background: #ff1493;
+            position: relative;
+            transform: rotate(-45deg);
+            display: inline-block;
+            margin: 10px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background: #ff1493;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 25px;
+            top: 0;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: rotate(-45deg) scale(1); }
+            50% { transform: rotate(-45deg) scale(1.1); }
+        }
+
+        .hearts-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #ff1493;
+            font-size: 1.1em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .message-section h2,
+            .game-section h2,
+            .countdown-section h2 {
+                font-size: 1.5em;
+            }
+
+            .message-section,
+            .game-section,
+            .countdown-section {
+                padding: 20px;
+            }
+
+            #gameCanvas {
+                width: 100%;
+            }
+
+            .heart {
+                width: 30px;
+                height: 30px;
+            }
+
+            .heart:before,
+            .heart:after {
+                width: 30px;
+                height: 30px;
+            }
+
+            .heart:before {
+                top: -15px;
+            }
+
+            .heart:after {
+                left: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            header {
+                padding: 20px 10px;
+            }
+
+            .message-section p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎉 Happy 18th Birthday Shivani! 🎉</h1>
+            <p class="subtitle">January 15, 2026</p>
+        </header>
+
+        <div class="countdown-section">
+            <h2>⏰ Countdown to Your Special Day</h2>
+            <div id="countdown"></div>
+        </div>
+
+        <div class="message-section">
+            <h2>💖 A Special Message for You</h2>
+            <p>
+                Dear Shivani,<br><br>
+                Happy 18th Birthday! Today marks the beginning of an amazing new chapter in your life. 
+                You're officially an adult, and I couldn't be more excited to see all the wonderful things 
+                you'll accomplish. Your kindness, intelligence, and beautiful spirit inspire everyone around you. 
+                May this year bring you endless joy, laughter, and unforgettable memories. 
+                Here's to you and all the adventures that await!<br><br>
+                With love and best wishes always! 💕
+            </p>
+        </div>
+
+        <div class="game-section">
+            <h2>🎮 Pop the Cakes Game!</h2>
+            <p class="instructions">Click or tap the cakes to pop them! Avoid the bombs!</p>
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            <div class="game-info">
+                Score: <span id="score">0</span> | Lives: <span id="lives">1</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>Made with care for Shivani's 18th Birthday</p>
+        </footer>
+    </div>
+
+    <script>
+        // Floating hearts background
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.innerHTML = '💗';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 15000);
+        }
+
+        setInterval(createFloatingHeart, 800);
+
+        // Countdown Timer
+        function updateCountdown() {
+            const birthday = new Date('2026-01-15T00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = birthday - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "🎉 IT'S YOUR BIRTHDAY! 🎉";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Pop the Hearts Game
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let score = 0;
+        let lives = 3;
+        let hearts = [];
+        let particles = [];
+        let gameOver = false;
+
+        // Responsive canvas
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            const maxWidth = Math.min(600, container.clientWidth - 40);
+            canvas.width = maxWidth;
+            canvas.height = maxWidth * 0.67;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Heart {
+            constructor() {
+                this.x = Math.random() * (canvas.width - 40) + 20;
+                this.y = -40;
+                this.speed = Math.random() * 1.5 + 1.5;
+                this.isGood = Math.random() > 0.25;
+                this.size = 35;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 2;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.rotation += this.rotationSpeed;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.font = this.size + 'px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(this.isGood ? '🎂' : '💣', 0, 0);
+                ctx.restore();
+            }
+
+            isClicked(x, y) {
+                const distance = Math.sqrt((x - this.x) ** 2 + (y - this.y) ** 2);
+                return distance < this.size;
+            }
+        }
+
+        class Particle {
+            constructor(x, y, isGood) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 8;
+                this.vy = (Math.random() - 0.5) * 8;
+                this.life = 1;
+                this.color = isGood ? '#ff69b4' : '#999';
+                this.size = Math.random() * 6 + 3;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.3;
+                this.life -= 0.02;
+            }
+
+            draw() {
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function createParticles(x, y, isGood) {
+            for (let i = 0; i < 15; i++) {
+                particles.push(new Particle(x, y, isGood));
+            }
+        }
+
+        function updateGame() {
+            if (gameOver) {
+                ctx.fillStyle = '#ff1493';
+                ctx.font = '30px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('Game Over!', canvas.width / 2, canvas.height / 2);
+                ctx.font = '20px Arial';
+                ctx.fillText(`Final Score: ${score}`, canvas.width / 2, canvas.height / 2 + 40);
+                ctx.fillText('Click to play again', canvas.width / 2, canvas.height / 2 + 70);
+                return;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw particles
+            particles = particles.filter(p => {
+                p.update();
+                p.draw();
+                return p.life > 0;
+            });
+
+            // Update and draw hearts
+            hearts = hearts.filter(heart => {
+                heart.update();
+                heart.draw();
+
+                // Remove if off screen
+                if (heart.y > canvas.height + 20) {
+                    if (heart.isGood) {
+                        lives--;
+                        document.getElementById('lives').textContent = lives;
+                        if (lives <= 0) {
+                            gameOver = true;
+                        }
+                    }
+                    return false;
+                }
+
+                return true;
+            });
+
+            // Add new hearts
+            if (Math.random() < 0.025) {
+                hearts.push(new Heart());
+            }
+
+            requestAnimationFrame(updateGame);
+        }
+
+        // Click/Touch handler
+        function handleClick(e) {
+            if (gameOver) {
+                // Reset game
+                score = 0;
+                lives = 1;
+                hearts = [];
+                particles = [];
+                gameOver = false;
+                document.getElementById('score').textContent = '0.00';
+                document.getElementById('lives').textContent = lives;
+                updateGame();
+                return;
+            }
+
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+            // Check if any heart was clicked
+            for (let i = hearts.length - 1; i >= 0; i--) {
+                if (hearts[i].isClicked(x, y)) {
+                    const heart = hearts[i];
+                    
+                    if (heart.isGood) {
+                        score += 1;
+                        document.getElementById('score').textContent = score.toFixed(2);
+                        createParticles(heart.x, heart.y, true);
+                        
+                        // Check if score reached 18
+                        if (score >= 18) {
+                            // Redirect to surprise page
+                            window.location.href = 'surprise.html';
+                        }
+                    } else {
+                        lives--;
+                        document.getElementById('lives').textContent = lives;
+                        createParticles(heart.x, heart.y, false);
+                        if (lives <= 0) {
+                            gameOver = true;
+                        }
+                    }
+                    
+                    hearts.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+        canvas.addEventListener('click', handleClick);
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            handleClick(e);
+        });
+
+        updateGame();
+    </script>
+</body>
+</html>
