@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 18th Birthday Mouni! 🎉</title>
+    <title>Happy 18th Birthday Shivani! 🎉</title>
     <style>
         * {
             margin: 0;
@@ -134,7 +134,7 @@
             text-align: center;
             margin-top: 20px;
             font-size: 1.2em;
-            color: #ff14e7;
+            color: #ff1493;
             font-weight: bold;
         }
 
@@ -284,7 +284,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>🎉 Happy 18th Birthday Mouni! 🎉</h1>
+            <h1>🎉 Happy 18th Birthday Shivani! 🎉</h1>
             <p class="subtitle">January 15, 2026</p>
         </header>
 
@@ -296,18 +296,18 @@
         <div class="message-section">
             <h2>💖 A Special Message for You</h2>
             <p>
-              
+                Dear Shivani,<br><br>
                 Happy 18th Birthday! Today marks the beginning of an amazing new chapter in your life. 
                 You're officially an adult, and I couldn't be more excited to see all the wonderful things 
                 you'll accomplish. Your kindness, intelligence, and beautiful spirit inspire everyone around you. 
                 May this year bring you endless joy, laughter, and unforgettable memories. 
                 Here's to you and all the adventures that await!<br><br>
-                best wishes to pack your bags to South Korea! 😆🤭🪽 
+                With love and best wishes always! 💕
             </p>
         </div>
 
         <div class="game-section">
-            <h2>🎮 Pop the Cakes Game for you!</h2>
+            <h2>🎮 Pop the Cakes Game!</h2>
             <p class="instructions">Click or tap the cakes to pop them! Avoid the bombs!</p>
             <canvas id="gameCanvas" width="600" height="400"></canvas>
             <div class="game-info">
@@ -316,7 +316,7 @@
         </div>
 
         <footer>
-            <p>By your friend, AK</p>
+            <p>Made with care for Shivani's 18th Birthday</p>
         </footer>
     </div>
 
@@ -386,7 +386,7 @@
             constructor() {
                 this.x = Math.random() * (canvas.width - 40) + 20;
                 this.y = -40;
-                this.speed = Math.random() * 1.5 + 1.2;
+                this.speed = Math.random() * 1.5 + 1.5;
                 this.isGood = Math.random() > 0.25;
                 this.size = 35;
                 this.rotation = Math.random() * 360;
@@ -503,7 +503,7 @@
             if (gameOver) {
                 // Reset game
                 score = 0;
-                lives = 3;
+                lives = 1;
                 hearts = [];
                 particles = [];
                 gameOver = false;
@@ -526,9 +526,9 @@
                         score += 1;
                         document.getElementById('score').textContent = score.toFixed(2);
                         createParticles(heart.x, heart.y, true);
-
-                        // Check if score reached 1800
-                        if (score >= 1800) {
+                        
+                        // Check if score reached 18
+                        if (score >= 18) {
                             // Redirect to surprise page
                             window.location.href = 'surprise.html';
                         }

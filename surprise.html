@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Shivani! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff9ec8 0%, #ffc0e3 50%, #ffeef8 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff1493;
+            position: fixed;
+            animation: confetti-fall 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            font-size: 20px;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Floating hearts */
+        .floating-heart {
+            position: fixed;
+            font-size: 30px;
+            animation: float-up 6s ease-in infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Celebration Header */
+        .celebration-header {
+            text-align: center;
+            padding: 60px 20px;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .celebration-header h1 {
+            font-size: 4em;
+            color: #ff1493;
+            text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.5);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .celebration-header p {
+            font-size: 1.8em;
+            color: #ff69b4;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Message Section */
+        .message-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 30px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+            animation: scaleIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .message-box h2 {
+            color: #ff1493;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .message-box p {
+            color: #666;
+            font-size: 1.3em;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* Photo Gallery */
+        .gallery-section {
+            margin: 50px 0;
+            animation: fadeIn 1.5s ease-in 1s both;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: #ff1493;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 0.8s ease-out both;
+            cursor: pointer;
+        }
+
+        .photo-card:nth-child(1) { animation-delay: 1.2s; }
+        .photo-card:nth-child(2) { animation-delay: 1.4s; }
+        .photo-card:nth-child(3) { animation-delay: 1.6s; }
+        .photo-card:nth-child(4) { animation-delay: 1.8s; }
+        .photo-card:nth-child(5) { animation-delay: 2s; }
+        .photo-card:nth-child(6) { animation-delay: 2.2s; }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.5);
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            display: block;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            border-radius: 18px 18px 0 0;
+        }
+
+        .photo-card {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .photo-card:hover img { transform: scale(1.05); }
+
+        .photo-caption {
+            padding: 16px;
+            text-align: center;
+            background: white;
+        }
+
+        .photo-caption h3 {
+            color: #ff1493;
+            font-size: 1.2em;
+            margin-bottom: 6px;
+        }
+
+        .photo-caption p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+
+        .lightbox.open { display: flex; }
+
+        .lightbox .lightbox-inner {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+        }
+
+        .lightbox .caption { margin-top: 12px; font-size: 1em; }
+
+        .lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.2em; background: transparent; border: none; padding: 12px; cursor: pointer; }
+        .lightbox .prev { left: 18px; }
+        .lightbox .next { right: 18px; }
+        .lightbox .close { position: absolute; top: 18px; right: 18px; color: #fff; font-size: 2em; background: transparent; border: none; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .gallery-grid img { height: 220px; }
+            .gallery-grid { gap: 16px; }
+        }
+
+        /* Back Button */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 50px auto;
+            padding: 15px 30px;
+            background: #ff1493;
+            color: white;
+            text-align: center;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #ff69b4;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .celebration-header h1 {
+                font-size: 2.5em;
+            }
+
+            .celebration-header p {
+                font-size: 1.3em;
+            }
+
+            .message-box {
+                padding: 25px;
+            }
+
+            .message-box h2 {
+                font-size: 1.8em;
+            }
+
+            .message-box p {
+                font-size: 1.1em;
+            }
+
+            .gallery-title {
+                font-size: 2em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-placeholder {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .celebration-header h1 {
+                font-size: 2em;
+            }
+
+            .celebration-header p {
+                font-size: 1.1em;
+            }
+
+            .gallery-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="celebration-header">
+            <h1>🎊 <br>Surprise!</h1>
+            <p>Congratulations Shivani! You popped 18 Cakes! 🎉</p>
+        </div>
+
+        <div class="message-box">
+            <h2>A Special Gift 💖</h2>
+            <p>
+                "Happy 18th, Shivs! 🎉 <br>Just like you won this game, 
+                you'll win in life too... and the hearts of everyone around you! 💕 
+                Wishing you endless joy, success, and love as you step into adulthood.
+                This is just the start of amazing adventures—keep shining bright! ✨"
+            </p>
+        </div>
+
+        <div class="gallery-section">
+            <h2 class="gallery-title">10 Avatars of Shivani<br>📸</h2>
+            <div class="gallery-grid">
+                <div class="photo-card">
+                    <img class="gallery-img" src="Shivani1.jpg" data-large="Shivani1.jpg" alt="Nature admirer">
+                    <div class="photo-caption"><h3>Nature admirer ✨</h3><p>Sun and Smiles</p></div>
+                </div>
+
+                <div class="photo-card">
+                    <img class="gallery-img" src="Screenshot 2026-01-11 152114.png" data-large="Screenshot 2026-01-11 152114.png" alt="Traveller">
+                    <div class="photo-caption"><h3>Traveller 🌍</h3><p>Adventurous</p></div>
+                </div>
+
+                <div class="photo-card">
+                    <img class="gallery-img" src="Shivani3.jpg" data-large="Shivani3.jpg" alt="Friend">
+                    <div class="photo-caption"><h3>Great Friend 👥</h3><p>Kindest Person</p></div>
+                </div>
+
+                <div class="photo-card">
+                    <img class="gallery-img" src="Shivani4.jpg" data-large="Shivani4.jpg" alt="Self Lover">
+                    <div class="photo-caption"><h3>Self Lover 💖</h3><p>Joyful Person</p></div>
+                </div>
+
+                <div class="photo-card">
+                    <img class="gallery-img" src="Shivani5.jpg" data-large="Shivani5.jpg" alt="Scientist">
+                    <div class="photo-caption"><h3>Scientist 🧪</h3><p>Intelligent Fellow</p></div>
+                </div>
+
+                <div class="photo-card">
+                    <img class="gallery-img" src="Dance.gif" data-large="Dance.gif" alt="Dancer">
+                    <div class="photo-caption"><h3>Dancer 💃🏽</h3><p>Great Dancer</p></div>
+                </div>
+                
+                <div class="photo-card">
+                    <img class="gallery-img" src="Shivani0.jpeg" data-large="Shivani0.jpeg" alt="IT Professional">
+                    <div class="photo-caption"><h3>IT Professional 💻</h3><p>Smart and Tech-savvy</p></div>
+                </div>
+
+                <div class="photo-card">
+                    <img class="gallery-img" src="Shivani2.png" data-large="Shivani2.png" alt="Self Lover">
+                    <div class="photo-caption"><h3>RCBian ❤️</h3><p>Virat Kholi's Big Fan</p></div>
+                </div>
+
+                <div class="photo-card">
+                    <img class="gallery-img" src="Screenshot 2026-01-11 152058.png" data-large="Screenshot 2026-01-11 152058.png" alt="Sailor 🚤">
+                    <div class="photo-caption"><h3>Sailor 🚤</h3><p>Part-time 😂</p></div>
+                </div>
+
+                <div class="photo-card">
+                    <img class="gallery-img" src="Shivani8.jpg" data-large="Shivani8.jpg" alt="Model">
+                    <div class="photo-caption"><h3>Model 🎬</h3><p>My Childhood Crush 🤭</p></div>
+                </div>
+            </div>
+            
+            <!-- Lightbox -->
+            <div id="lightbox" class="lightbox" aria-hidden="true">
+                <button class="nav prev" aria-label="Previous">‹</button>
+                <div class="lightbox-inner">
+                    <button class="close" aria-label="Close">×</button>
+                    <img id="lightbox-img" src="" alt="">
+                    <div class="caption" id="lightbox-caption"></div>
+                </div>
+                <button class="nav next" aria-label="Next">›</button>
+            </div> 
+        </div>
+
+        <a href="javascript:history.back()" class="back-button">← Back to Game</a>
+        <footer>
+            <p>©️Copyright reserved only for <a href="https://www.instagram.com/i_am_shivzz?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Shivani</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff1493', '#ff69b4', '#ffc0cb', '#ffb6c1', '#ff9ec8'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 4 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+
+        // Create floating hearts
+        function createFloatingHeart() {
+            const hearts = ['💗', '💕', '💖', '💝'];
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 3 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        // Initialize animations
+        createConfetti();
+        setInterval(createSparkle, 500);
+        setInterval(createFloatingHeart, 800);
+
+        // Add click animation to photo cards
+        document.querySelectorAll('.photo-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
+            });
+        });
+
+        // Lightbox functionality
+        (function(){
+            const imgs = Array.from(document.querySelectorAll('.gallery-img'));
+            if (!imgs.length) return;
+            const lightbox = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            const lbCaption = document.getElementById('lightbox-caption');
+            const prevBtn = document.querySelector('.lightbox .prev');
+            const nextBtn = document.querySelector('.lightbox .next');
+            const closeBtn = document.querySelector('.lightbox .close');
+            let current = 0;
+
+            function open(index){
+                const el = imgs[index];
+                lbImg.src = el.dataset.large || el.src;
+                lbImg.alt = el.alt || '';
+                lbCaption.textContent = el.title || el.alt || '';
+                current = index;
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden','false');
+            }
+
+            function close(){
+                lightbox.classList.remove('open');
+                lightbox.setAttribute('aria-hidden','true');
+            }
+
+            function showNext(delta){
+                current = (current + delta + imgs.length) % imgs.length;
+                open(current);
+            }
+
+            imgs.forEach((img, i) => img.addEventListener('click', () => open(i)));
+            prevBtn.addEventListener('click', () => showNext(-1));
+            nextBtn.addEventListener('click', () => showNext(1));
+            closeBtn.addEventListener('click', close);
+            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('open')) return;
+                if (e.key === 'Escape') close();
+                if (e.key === 'ArrowRight') showNext(1);
+                if (e.key === 'ArrowLeft') showNext(-1);
+            });
+        })();
+    </script>
+</body>
+</html>
